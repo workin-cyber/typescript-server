@@ -9,21 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const postTasks_1 = require("../BL/postTasks");
-const router = (0, express_1.Router)();
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const mongoose_1 = require("mongoose");
+const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield (0, postTasks_1.get)();
-        res.send(result);
+        yield (0, mongoose_1.connect)(process.env.CONNECTION_STRING);
+        console.log("db is connected");
     }
     catch (error) {
-        res.send(error.message || error);
+        console.log(error.message || error);
     }
-}));
-router.route("/:id")
-    .get((req, res) => { })
-    .post((req, res) => { })
-    .delete((req, res) => { })
-    .put((req, res) => { });
-exports.default = router;
+});
+exports.default = connectDb;

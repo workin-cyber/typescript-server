@@ -9,21 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const postTasks_1 = require("../BL/postTasks");
-const router = (0, express_1.Router)();
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const result = yield (0, postTasks_1.get)();
-        res.send(result);
-    }
-    catch (error) {
-        res.send(error.message || error);
-    }
-}));
-router.route("/:id")
-    .get((req, res) => { })
-    .post((req, res) => { })
-    .delete((req, res) => { })
-    .put((req, res) => { });
-exports.default = router;
+exports.get = void 0;
+const postController_1 = require("../DL/controllers/postController");
+const get = () => __awaiter(void 0, void 0, void 0, function* () { return yield (0, postController_1.getAll)(); });
+exports.get = get;
